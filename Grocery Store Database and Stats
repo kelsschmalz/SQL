@@ -1,0 +1,29 @@
+--Create a grocery store database
+
+CREATE TABLE rose_apothecary (id INTEGER PRIMARY KEY, item TEXT, price INTEGER, aisle INTEGER, department TEXT, rating INTEGER); 
+
+INSERT INTO rose_apothecary 
+VALUES
+(1, "pretzels", 3, 1, "food", 5),
+(2, "ew, david sweatshirt", 25, 4, "clothing", 5),
+(3, "mini m&ms", 2, 1, "food", 3),
+(4, "blanket", 20, 3, "bedding", 4),
+(5, "gum", 1, 1, "food", 3)
+(6, "dog collar", 10, 6, "pets", 5), 
+(7, "dog leash", 10, 6, "pets", 5)
+(8, "phone charger", 8, 2, "electronics", 2), 
+(9, "smiley phone case", 10, 2, "electronics", 5),
+(10, "chapstick", 2, 1, "misc", 3), 
+(11, "plunger", 10, 10, "cleaning", 2),
+(12, "eye mask", 3, 4, "beauty", 4),
+(13, "taylor swift cd", 15, 2, "electronics", 5),
+(14, "salt lamp", 15, 3, "decor", 5)
+(15, "cat litter", 10, 6, "pets", 3);
+
+
+--display the database ordered by price.
+SELECT * FROM rose_apothecary ORDER BY price ascending; 
+
+--what is the highest rated item sold in the grocery store? 
+SELECT item MAX(rating) FROM rose_apothecary GROUP BY item;
+
