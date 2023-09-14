@@ -1,0 +1,63 @@
+# Create table about famous people and information people may want to know about them
+
+CREATE TABLE tv_actors_info (id INTEGER PRIMARY KEY, name TEXT, birthplace TEXT, age INTEGER);
+
+INSERT INTO "tv_actors_info" VALUES (1, "jason sudeikis", "VA", 47);
+INSERT INTO "tv_actors_info" VALUES (2, "jason bateman", "NY", 54);
+INSERT INTO "tv_actors_info" VALUES (3, "selena gomez", "TX",  31);
+INSERT INTO "tv_actors_info" VALUES (4, "john krasinski", "MA", 23);
+INSERT INTO "tv_actors_info" VALUES (5, "reese witherspoon", "LA", 47); 
+INSERT INTO "tv_actors_info" VALUES (6, "millie bobby brown", "Spain", 19); 
+INSERT INTO "tv_actors_info" VALUES (7, "rosario dawson", "NY", 44);
+
+CREATE TABLE tv_actors_relationships (id INTEGER PRIMARY KEY, actor_name TEXT, relationship_status TEXT, kids INTEGER);
+
+INSERT INTO "tv_actors_relationships" VALUES (1, "jason sudeikis", "divorced", 2);
+INSERT INTO "tv_actors_relationships" VALUES
+(2, "jason bateman", "married", 2);
+INSERT INTO "tv_actors_relationships" VALUES (3, "selena gomez", "single", 0); 
+INSERT INTO "tv_actors_relationships" VALUES (4, "john krasinski", "married", 2);
+INSERT INTO "tv_actors_relationships" VALUES (5, "reese witherspoon", "divorced", 3);
+INSERT INTO "tv_actors_relationships" VALUES (6, "millie bobby brown", "engaged", 0);
+INSERT INTO "tv_actors_relationships" VALUES (7, "rosario dawson", "single", 1);
+
+CREATE TABLE tv_actors_projects (id INTEGER PRIMARY KEY, actors_name TEXT, tv_show TEXT);
+
+INSERT INTO "tv_actors_projects" VALUES (1, "jason sudeikis", "ted lasso");
+INSERT INTO "tv_actors_projects" VALUES (2, "jason bateman", "ozark");
+INSERT INTO "tv_actors_projects" VALUES (3, "selena gomez", "only murders in the building");
+INSERT INTO "tv_actors_projects" VALUES (4, "john krasinski", "the office");
+INSERT INTO "tv_actors_projects" VALUES (5, "reese witherspoon", "newsroom");
+INSERT INTO "tv_actors_projects" VALUES (6, "millie bobby brown", "stranger things");
+INSERT INTO "tv_actors_projects" VALUES (7, "rosario dawson", "ahsoka"); 
+
+CREATE TABLE tv_actors_hobbies (id INTEGER PRIMARY KEY, actor TEXT, hobby TEXT);
+
+INSERT INTO tv_actors_hobbies VALUES (1, "jason sudeikis", "soccer");
+INSERT INTO tv_actors_hobbies VALUES (2, "jason sudeikis", "badminton");
+INSERT INTO tv_actors_hobbies VALUES (3, "jason bateman", "rugby");
+INSERT INTO tv_actors_hobbies VALUES (4, "jason bateman", "movies");
+INSERT INTO tv_actors_hobbies VALUES (5, "selena gomez", "singing");
+INSERT INTO tv_actors_hobbies VALUES (6, "selena gomez", "volunteering");
+INSERT INTO tv_actors_hobbies VALUES (7, "millie bobby brown", "skin care");
+INSERT INTO tv_actors_hobbies VALUES (8, "millie bobby brown", "volunteering"); 
+INSERT INTO tv_actors_hobbies VALUES (9, "rosario dawson", "volunteering");
+INSERT INTO tv_actors_hobbies VALUES (10, "reese witherspoon", "yoga");
+INSERT INTO tv_actors_hobbies VALUES (11, "reese witherspoon", "volunteering");
+INSERT INTO tv_actors_hobbies VALUES (12, "john krasinski", "directing");
+
+# What are the actors' ages, relationship status' and number of kids? 
+
+SELECT i.name, i.age, r.relationship_status, r.kids
+FROM tv_actors_info as i
+INNER JOIN tv_actors_relationships as r
+ON i.name=r.actor_name
+ORDER BY age asc;
+
+# What shows are the actors known for? What are their hobbies? 
+
+SELECT p.actors_name, p.tv_show, h.hobby
+FROM tv_actors_projects as p
+INNER JOIN tv_actors_hobbies as h
+ON p.actors_name=h.actor
+ORDER BY hobby;
